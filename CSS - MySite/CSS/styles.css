@@ -1,0 +1,116 @@
+
+
+body{
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  background-color: #e4e3e3;
+
+  margin: 0;
+}
+
+
+h1{
+  font-size: 5rem;
+  color: #3b6978;
+  font-family: 'Great Vibes', cursive;
+}
+
+h2{
+  font-size: 3rem;
+  color: #84a9ac;
+}
+
+h3{
+  font-size: 2.5rem;
+  color: #11999E;
+}
+a{
+  color: #204051;
+}
+a:hover{
+  color: white;
+}
+
+p{
+font-size: 2rem;
+color: #204051;
+margin-bottom: 0;
+line-height: 2;
+}
+hr{
+  width: 5%;
+  margin: 10% auto;
+  border-style: dotted;
+  border-width: 10px;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-color: #3b6978;
+
+}
+
+
+.size{
+  width: 10%;
+
+}
+
+.skill-img{
+  margin-right: 30px;
+  float: left;
+}
+
+.skill-row{
+  margin: 100px auto;
+  width: 50%;
+  text-align: left;
+}
+.profile{
+  margin: auto;
+  width: 50%;
+
+}
+
+.bottom-container{
+  margin-top: 50px;
+  background-color: #827397;
+  padding: 3%;
+}
+
+.footer-link{
+padding: 2%;
+text-decoration: none;
+}
+
+.contact-me{
+  width: 40%;
+  margin: auto;
+}
+.p-contact{
+  margin-bottom: 5%;
+}
+
+.btn {
+  background: #a2c6de;
+  background-image: -webkit-linear-gradient(top, #a2c6de, #5f8a86);
+  background-image: -moz-linear-gradient(top, #a2c6de, #5f8a86);
+  background-image: -ms-linear-gradient(top, #a2c6de, #5f8a86);
+  background-image: -o-linear-gradient(top, #a2c6de, #5f8a86);
+  background-image: linear-gradient(to bottom, #a2c6de, #5f8a86);
+  -webkit-border-radius: 12;
+  -moz-border-radius: 12;
+  border-radius: 12px;
+  font-family: 'Raleway', sans-serif;
+  color: #204051;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #5f8a86;
+  text-decoration: none;
+}
+.copy-right{
+  font-size: 100%;
+}
