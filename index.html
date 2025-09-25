@@ -1,64 +1,351 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="utf-8">
-  <title>Nagarjun</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" href="logo - N.png">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume | Nagarjun Karunamoorthy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Professional Teal & Beige -->
+    <!-- Application Structure Plan: The application is structured as a single-page dashboard with a sticky top navigation for easy access to key sections: an introduction, a visualized impact dashboard, an interactive skills showcase, a collapsible career timeline, and education. This non-linear structure was chosen to allow recruiters to quickly jump to the information most relevant to them, such as quantifiable achievements or specific technical skills. The key interaction is the Impact Dashboard chart, which immediately highlights tangible results, making a stronger impression than static bullet points. -->
+    <!-- Visualization & Content Choices: 
+        - Professional Summary -> Inform -> Static Text Block -> None -> Provides a quick, high-level overview. -> HTML/CSS.
+        - Key Achievements (Comcast) -> Compare -> Interactive Bar Chart -> Hover for details -> Visualizing metrics like '50% cost reduction' makes the impact more immediate and memorable than text alone. -> Chart.js.
+        - Core Skills -> Organize -> Interactive Filterable Lists -> Click category button to show/hide skills -> Allows users to easily explore a large number of skills without being overwhelmed, focusing on what's relevant to their needs. -> HTML/CSS/JS.
+        - Professional Experience -> Change over Time -> Collapsible Vertical Timeline -> Click to expand/collapse job details -> Presents career progression cleanly and engagingly, reducing initial clutter while keeping details accessible. -> HTML/CSS/JS.
+        - Education/Certs -> Inform -> Static List -> None -> Standard, straightforward information presentation. -> HTML/CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link {
+            transition: color 0.3s ease, border-bottom-color 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #0d9488;
+            border-bottom-color: #0d9488;
+        }
+        .skill-btn {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .skill-btn.active {
+            background-color: #0d9488;
+            color: white;
+        }
+        .timeline-item-content {
+            transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+            max-height: 0;
+            overflow: hidden;
+        }
+        .timeline-item-content.open {
+            max-height: 500px;
+        }
+    </style>
 </head>
+<body class="bg-gray-50">
 
-<body>
+    <header class="bg-white shadow-md p-6 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-teal-700">NAGARJUN KARUNAMOORTHY</h1>
+        <p class="text-xl md:text-2xl text-gray-600 mt-2">Cloud & DevOps Engineer</p>
+        <div class="mt-4 flex justify-center items-center space-x-6 text-gray-500">
+            <a href="mailto:nagarjun318@gmail.com" class="hover:text-teal-700">nagarjun318@gmail.com</a>
+            <span>&bull;</span>
+            <a href="tel:+91-8508065015" class="hover:text-teal-700">+91-8508065015</a>
+            <span>&bull;</span>
+            <a href="https://www.linkedin.com/in/nagarjun-karunamoorthy/" target="_blank" class="hover:text-teal-700">LinkedIn</a>
+        </div>
+    </header>
 
-  </div>
-  <div class="Top-container">
-    <img class="size" src="https://image.flaticon.com/icons/svg/2920/2920244.svg" alt="camera">
-    <h1>I'm Nagarjun</h1>
-    <p class="">a programmer</p>
-    <hr>
-    <a href=".well-known/microsoft-identity-association.json"> json</a>
-  </div>
+    <nav id="navbar" class="sticky top-0 bg-white z-10 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center space-x-4 md:space-x-8 py-3">
+                <a href="#summary" class="nav-link px-2 py-2 text-sm md:text-base font-medium text-gray-600">Summary</a>
+                <a href="#impact" class="nav-link px-2 py-2 text-sm md:text-base font-medium text-gray-600">Impact</a>
+                <a href="#skills" class="nav-link px-2 py-2 text-sm md:text-base font-medium text-gray-600">Skills</a>
+                <a href="#experience" class="nav-link px-2 py-2 text-sm md:text-base font-medium text-gray-600">Experience</a>
+                <a href="#education" class="nav-link px-2 py-2 text-sm md:text-base font-medium text-gray-600">Education</a>
+            </div>
+        </div>
+    </nav>
 
-  <div class="middle-container">
-    <div class="profile">
-      <img class="size" src="https://image.flaticon.com/icons/svg/3135/3135689.svg" alt="">
-      <h2>Hello.</h2>
-      <p>Welcome to my personal site, I am a python programmer basically into machine learning and deep learning</p>
-    </div>
-    <hr>
-    <div class="skills">
-      <h2>My Skills.</h2>
-      <img class="size" src="https://image.flaticon.com/icons/svg/3189/3189230.svg" alt="">
-      <div class="skill-row">
-        <img class="size skill-img" src="https://image.flaticon.com/icons/png/512/2444/2444286.png" alt="">
-        <h3>Artificial Intelligence</h3>
-        <p>I have a basic understanding in Machine Learning and Deep Learning with hands on experience in TensorFlow and keras using python.</p>
-      </div>
-      <div class="skill-row">
-        <img class="size skill-img" src="https://image.flaticon.com/icons/svg/3135/3135733.svg" alt="">
-        <h3>Web Developement</h3>
-        <p>As far as Front End is concerned, I have a good knowledge in HTML, CSS, Bootstrap, JavaScript, JQuery.</p>
-      </div>
-    </div>
-    <hr>
-    <img class="size" src="https://image.flaticon.com/icons/png/512/3025/3025543.png" alt="">
+    <main class="container mx-auto p-4 md:p-8">
 
-    <div class="contact-me">
-      <h2>Get In Touch</h2>
-      <p class="p-contact">If you would like to contact me, you can mail me by clicking below or follow me on any of the social media</p>
-      <a class="btn" href="mailto:nagarjun318@gmail.com">CONTACT ME</a>
-    </div>
-  </div>
+        <section id="summary" class="my-12 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-4 text-teal-800">Professional Summary</h2>
+             <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+                <p class="text-lg text-gray-700 leading-relaxed text-center">
+                    Cloud & DevOps Engineer with over 7.5 years of experience in Python, Django, and .NET development. Deep expertise in CI/CD, automation, and Infrastructure as Code using GitHub Actions, Terraform, and CloudFormation. Proven ability to design and manage robust, cost-effective cloud solutions on AWS and GCP with a strong focus on Docker and Kubernetes.
+                </p>
+            </div>
+        </section>
 
+        <section id="impact" class="my-12 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-4 text-teal-800">Key Impact Dashboard</h2>
+            <div class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <p class="text-center text-gray-600 mb-6">
+                    This chart visualizes the quantifiable impact delivered in my role at Comcast. These metrics represent significant improvements in efficiency, cost savings, and user satisfaction driven by automation and innovative cloud solutions. Hover over each bar to see the specific achievement.
+                </p>
+                <div class="chart-container">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+        </section>
 
-  <div class="bottom-container">
-    <a class="footer-link" href="https://www.linkedin.com/in/nagarjun-k-420b92139/">LinkedIn</a>
-    <a class="footer-link" href="https://twitter.com/arjun_great">Twitter</a>
-    <a class="footer-link" href="https://www.facebook.com/arjun.lk.90">Facebook</a>
-    <p class="copy-right">© 2020 Nagarjun Karunamoorthy.</p>
-  </div>
+        <section id="skills" class="my-12 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-4 text-teal-800">Core Skills</h2>
+            <div class="max-w-4xl mx-auto bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                <p class="text-center text-gray-600 mb-8">
+                    My technical expertise spans across programming, cloud platforms, and DevOps methodologies. Select a category below to filter the skills and explore the technologies I work with.
+                </p>
+                <div id="skill-buttons" class="flex flex-wrap justify-center gap-2 md:gap-4 mb-6">
+                    <button data-filter="all" class="skill-btn active text-sm md:text-base bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-full">All</button>
+                    <button data-filter="programming" class="skill-btn text-sm md:text-base bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-full">Programming</button>
+                    <button data-filter="devops" class="skill-btn text-sm md:text-base bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-full">DevOps & Automation</button>
+                    <button data-filter="cloud" class="skill-btn text-sm md:text-base bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-full">Cloud Platforms</button>
+                    <button data-filter="data" class="skill-btn text-sm md:text-base bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-full">Databases & Data</button>
+                    <button data-filter="containers" class="skill-btn text-sm md:text-base bg-gray-200 text-gray-800 font-medium py-2 px-4 rounded-full">Containers</button>
+                </div>
+                <div id="skills-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center">
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="my-12 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-8 text-teal-800">Professional Experience</h2>
+             <div class="max-w-4xl mx-auto">
+                <p class="text-center text-gray-600 mb-8 px-4">
+                    Here is a timeline of my career progression, highlighting key responsibilities and accomplishments at each organization. Click on any job title to expand and view the detailed contributions for that role.
+                </p>
+                <div class="relative border-l-2 border-teal-500 ml-6">
+                    <div class="timeline-item mb-12">
+                        <div class="absolute -left-4 top-1 w-8 h-8 bg-teal-700 rounded-full border-4 border-white"></div>
+                        <div class="ml-10">
+                            <h3 class="text-xl font-bold text-gray-800 cursor-pointer timeline-title">Cloud CRE / Customer Reliability Engineer</h3>
+                            <p class="text-md text-gray-600 font-medium">COMCAST | Chennai, IN</p>
+                            <p class="text-sm text-gray-500">Jun 2023 – Present</p>
+                            <div class="timeline-item-content mt-2">
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    <li>Engineered an automated oversized VM notification system using Python, AWS SNS, MongoDB, and GitHub Actions, leading to a 50% reduction in overall cloud costs.</li>
+                                    <li>Automated VM decommissioning workflows with Python, Terraform, AWS Lambda, and Jira API, cutting manual effort by 30% and significantly improving request turnaround time.</li>
+                                    <li>Developed a multi-platform, AI-powered Slack bot using AWS Lambda, OpenAI API, and MongoDB, which improved user query resolution by 40% and reduced response times across Slack, Teams, and Jira.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timeline-item mb-12">
+                        <div class="absolute -left-4 top-1 w-8 h-8 bg-teal-700 rounded-full border-4 border-white"></div>
+                        <div class="ml-10">
+                            <h3 class="text-xl font-bold text-gray-800 cursor-pointer timeline-title">Developer (Python & Django)</h3>
+                            <p class="text-md text-gray-600 font-medium">ACCENTURE | Remote</p>
+                            <p class="text-sm text-gray-500">Aug 2021 – Jun 2023</p>
+                            <div class="timeline-item-content mt-2">
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    <li>Led the migration of a large-scale Django application from Azure to GCP App Engine, including a complex MySQL-to-PostgreSQL database migration, resulting in a seamless transition and a noticeable performance improvement.</li>
+                                    <li>Optimized large-scale data transfers for a key client by developing Python + AWS S3/Glue/Redshift pipelines, automating ETL processes with Pandas & Boto3 and boosting data reliability.</li>
+                                    <li>Enhanced an internal security testing platform by performing unit testing, fixing defects, and improving usability, which contributed to product stability and user satisfaction.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="absolute -left-4 top-1 w-8 h-8 bg-teal-700 rounded-full border-4 border-white"></div>
+                        <div class="ml-10">
+                            <h3 class="text-xl font-bold text-gray-800 cursor-pointer timeline-title">Support Engineer (.NET & Application Support)</h3>
+                            <p class="text-md text-gray-600 font-medium">COGNIZANT | Chennai, IN</p>
+                            <p class="text-sm text-gray-500">Feb 2018 – Aug 2021</p>
+                            <div class="timeline-item-content mt-2">
+                                <ul class="list-disc list-inside space-y-2 text-gray-700">
+                                    <li>Supported and enhanced CMSNext, a mission-critical healthcare product for field services and call centers, improving system reliability and usability.</li>
+                                    <li>Gained expertise in Informatica workflows and independently managed data pipelines to ensure smooth operations.</li>
+                                    <li>Delivered multiple bug fixes and enhancements to improve application performance in a high-availability production environment using BMC Remedy ITSM.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="my-12 scroll-mt-24">
+            <h2 class="text-3xl font-bold text-center mb-8 text-teal-800">Education & Certifications</h2>
+            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Education</h3>
+                    <p class="text-lg font-medium text-gray-700">Bachelor of Engineering (Mechanical)</p>
+                    <p class="text-md text-gray-600">Kongu Engineering College, Anna University</p>
+                    <p class="text-sm text-gray-500">2013 – 2017</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Certifications</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Python Programming & Django Application Development - Udemy</li>
+                        <li>Docker, Kubernetes, and Terraform – Udemy</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-6 bg-white mt-12 border-t">
+        <p class="text-gray-500">Interactive Resume for Nagarjun Karunamoorthy</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const impactData = {
+                labels: ['Cloud Cost Reduction', 'Manual Effort Reduction', 'Query Resolution Improvement'],
+                values: [50, 30, 40],
+                descriptions: [
+                    'Engineered an automated oversized VM notification system, leading to a 50% reduction in overall cloud costs.',
+                    'Automated VM decommissioning workflows, cutting manual effort by 30% and improving turnaround time.',
+                    'Developed an AI-powered Slack bot, which improved user query resolution by 40%.'
+                ]
+            };
+            const ctx = document.getElementById('impactChart').getContext('2d');
+            const impactChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: impactData.labels,
+                    datasets: [{
+                        label: '% Improvement / Reduction',
+                        data: impactData.values,
+                        backgroundColor: [
+                            'rgba(15, 118, 110, 0.6)',
+                            'rgba(20, 83, 45, 0.6)',
+                            'rgba(2, 132, 199, 0.6)',
+                        ],
+                        borderColor: [
+                            'rgba(15, 118, 110, 1)',
+                            'rgba(20, 83, 45, 1)',
+                            'rgba(2, 132, 199, 1)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Percentage (%)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y + '%';
+                                    }
+                                    return label;
+                                },
+                                afterLabel: function(context) {
+                                    return impactData.descriptions[context.dataIndex];
+                                }
+                            },
+                            bodyFont: { size: 12 },
+                            titleFont: { size: 14, weight: 'bold'},
+                            displayColors: false,
+                            bodySpacing: 4
+                        }
+                    }
+                }
+            });
+
+            const skills = {
+                programming: ['Python', 'Django & DRF', '.NET (C#)', 'C/C++', 'VBA'],
+                devops: ['CI/CD', 'Jenkins', 'GitHub Actions', 'Terraform', 'CloudFormation'],
+                cloud: ['AWS', 'GCP', 'Lambda', 'CloudWatch', 'S3', 'SNS', 'SQS', 'OpenSearch'],
+                data: ['SQL Server', 'PostgreSQL', 'MySQL', 'MongoDB', 'Redshift', 'Informatica'],
+                containers: ['Docker', 'Kubernetes']
+            };
+
+            const skillsGrid = document.getElementById('skills-grid');
+            const skillButtons = document.querySelectorAll('.skill-btn');
+            
+            const renderSkills = (filter = 'all') => {
+                skillsGrid.innerHTML = '';
+                let skillsToRender = [];
+                if (filter === 'all') {
+                    skillsToRender = Object.values(skills).flat();
+                } else {
+                    skillsToRender = skills[filter];
+                }
+
+                skillsToRender.forEach(skill => {
+                    const skillEl = document.createElement('div');
+                    skillEl.className = 'bg-gray-100 p-3 rounded-md text-gray-700 text-sm md:text-base font-medium';
+                    skillEl.textContent = skill;
+                    skillsGrid.appendChild(skillEl);
+                });
+            };
+
+            skillButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    skillButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    renderSkills(button.dataset.filter);
+                });
+            });
+
+            renderSkills();
+
+            const timelineTitles = document.querySelectorAll('.timeline-title');
+            timelineTitles.forEach(title => {
+                title.addEventListener('click', () => {
+                    const content = title.parentElement.querySelector('.timeline-item-content');
+                    content.classList.toggle('open');
+                });
+            });
+
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active', link.getAttribute('href').substring(1) === entry.target.id);
+                        });
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px' });
+            sections.forEach(section => observer.observe(section));
+
+        });
+    </script>
 </body>
-
 </html>
